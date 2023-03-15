@@ -201,10 +201,10 @@ const Calendario = forwardRef((props: CalendarProps, ref: Ref<FlatList>) => {
   const handlePress = useCallback(
     (date: Date) => {
       if (onPress) {
-        onPress(date);
+        onPress(date, range);
       }
     },
-    [onPress]
+    [onPress, range]
   );
 
   const renderMonth = useCallback(

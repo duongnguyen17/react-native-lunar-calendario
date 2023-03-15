@@ -78,13 +78,17 @@ export interface CalendarProps {
    */
   disableRange?: boolean;
 
+  // /**
+  //  * Selected end date
+  //  *
+  //  * @type {Date}
+  //  * @memberof CalendarProps
+  //  */
+  // endDate?: Date;
   /**
-   * Selected end date
-   *
-   * @type {Date}
-   * @memberof CalendarProps
+   * array date contain 2 elements
    */
-  endDate?: Date;
+  range: Array<Date>;
 
   /**
    * FlatList's extraData prop
@@ -208,13 +212,13 @@ export interface CalendarProps {
    */
   showsVerticalScrollIndicator?: boolean;
 
-  /**
-   * Selected start date
-   *
-   * @type {Date}
-   * @memberof CalendarProps
-   */
-  startDate?: Date;
+  // /**
+  //  * Selected start date
+  //  *
+  //  * @type {Date}
+  //  * @memberof CalendarProps
+  //  */
+  // startDate?: Date;
 
   /**
    * First month to render

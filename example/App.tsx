@@ -61,8 +61,10 @@ const FORMAT = 'YYYY-MM-DD';
 
 const INITIAL_STATE = {
   disableRange: false,
-  startDate: moment(START_DATE_1, FORMAT).toDate(),
-  endDate: moment(END_DATE_1, FORMAT).toDate(),
+  range: [
+    moment(START_DATE_1, FORMAT).toDate(),
+    moment(END_DATE_1, FORMAT).toDate(),
+  ],
   minDate: moment(MIN_DATE_1, FORMAT).toDate(),
   maxDate: moment(MAX_DATE_1, FORMAT).toDate(),
 };
@@ -90,32 +92,13 @@ const markedDays: MarkedDays = {
 };
 
 const App = () => {
-  const [startDate, setStartDate] = useState<Date | undefined>(
-    INITIAL_STATE.startDate
-  );
-  const [endDate, setEndDate] = useState<Date | undefined>(
-    INITIAL_STATE.endDate
-  );
+  const [range, setRange] = useState<Array<Date>>(INITIAL_STATE.range);
 
   const handleChangeDate = useCallback(
     (date) => {
-      if (startDate) {
-        if (endDate) {
-          setStartDate(date);
-          setEndDate(undefined);
-        } else if (date < startDate) {
-          setStartDate(date);
-        } else if (date > startDate) {
-          setEndDate(date);
-        } else {
-          setStartDate(date);
-          setEndDate(date);
-        }
-      } else {
-        setStartDate(date);
-      }
+      setRange(range.length === 0 ? [date] : [...range, date]);
     },
-    [startDate, endDate]
+    [range]
   );
 
   return (
@@ -127,8 +110,7 @@ const App = () => {
       >
         <Calendar
           onPress={handleChangeDate}
-          startDate={startDate}
-          endDate={endDate}
+          range={range}
           startingMonth={'2019-11-01'}
           markedDays={markedDays}
           monthHeight={370}

@@ -4,8 +4,7 @@ import moment from 'moment';
 import { isValidDate } from '../utils/date';
 import { CalendarProps } from '../types';
 
-interface Input
-  extends Pick<CalendarProps, 'startDate' | 'endDate' | 'numberOfMonths'> {
+interface Input extends Pick<CalendarProps, 'range' | 'numberOfMonths'> {
   firstMonthToRender: Date;
 }
 
@@ -15,19 +14,29 @@ interface Result {
 }
 
 export default function useRange({
-  startDate,
-  endDate,
+  range,
   numberOfMonths,
   firstMonthToRender,
 }: Input): Result {
   return useMemo(() => {
+    let _startDate: Date | undefined;
+    let _endDate: Date | undefined;
+
+    if (range[0] > range[1]) {
+      _startDate = range[1];
+      _endDate = range[0];
+    } else {
+      _endDate = range[1];
+      _startDate = range[0];
+    }
+
     let start: Date | undefined;
     const lastMonth = moment(firstMonthToRender)
       .add(numberOfMonths, 'months')
       .toDate();
 
-    if (startDate && isValidDate(new Date(startDate))) {
-      start = moment(startDate, 'YYYY-MM-DD').toDate();
+    if (_startDate && isValidDate(new Date(_startDate))) {
+      start = moment(_startDate, 'YYYY-MM-DD').toDate();
 
       if (start > lastMonth) {
         start = undefined;
@@ -35,13 +44,13 @@ export default function useRange({
     }
 
     let end =
-      endDate && isValidDate(new Date(endDate)) && endDate <= lastMonth
-        ? moment(endDate, 'YYYY-MM-DD').toDate()
+      _endDate && isValidDate(new Date(_endDate)) && _endDate <= lastMonth
+        ? moment(_endDate, 'YYYY-MM-DD').toDate()
         : undefined;
 
     return {
       start,
       end,
     };
-  }, [endDate, firstMonthToRender, numberOfMonths, startDate]);
+  }, [range, firstMonthToRender, numberOfMonths]);
 }

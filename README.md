@@ -1,6 +1,8 @@
-# React Native Calendar 📆
+# React Native Lunar Calendar 📆
 
-![Coverlogo](https://imgur.com/LINQ6HZ.png)
+## This repo fork from [React Native Calendar]{https://www.npmjs.com/package/react-native-calendario}
+
+<!-- ![Coverlogo](https://imgur.com/LINQ6HZ.png)
 
 ![BuildStatus](https://github.com/maggialejandro/react-native-calendario/actions/workflows/lint.yml/badge.svg)
 [![NPM version](https://img.shields.io/npm/v/react-native-calendario.svg)](https://www.npmjs.com/package/react-native-calendario)
@@ -9,32 +11,31 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/832690f286a5451cacdae664d63be3b9)](https://www.codacy.com/app/maggialejandro/react-native-calendario?utm_source=github.com&utm_medium=referral&utm_content=maggialejandro/react-native-calendario&utm_campaign=Badge_Grade)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://makeapullrequest.com)
 
-![](https://media.giphy.com/media/eu8fFCG3rs3IEYwyYk/giphy.gif) ![](https://media.giphy.com/media/g0pZuxQ16frVSmEBSt/giphy.gif)
+![](https://media.giphy.com/media/eu8fFCG3rs3IEYwyYk/giphy.gif) ![](https://media.giphy.com/media/g0pZuxQ16frVSmEBSt/giphy.gif) -->
 
 ## Installation
 
 ```console
-npm install react-native-calendario --save
+npm install react-native-lunar-calendario --save
 ```
 
 Using yarn
 
 ```console
-yarn add react-native-calendario
+yarn add react-native-lunar-calendario
 ```
 
 ## Usage
 
 ```typescript
-import { Calendar } from 'react-native-calendario';
+import { Calendar } from 'react-native-lunar-calendario';
 ```
 
 ```typescript
 <Calendar
   onChange={(range) => console.log(range)}
+  range={[new Date(2018, 3, 30), new Date(2018, 4, 5)]}
   minDate={new Date(2018, 3, 20)}
-  startDate={new Date(2018, 3, 30)}
-  endDate={new Date(2018, 4, 5)}
   theme={{
     activeDayColor: {},
     monthTitleTextStyle: {
@@ -89,8 +90,7 @@ import { Calendar } from 'react-native-calendario';
 | **`onPress`**               | Callback called when a day is pressed. | yes                  |               | (Date) => void   |
 | **`minDate`**               | Minimum date that can be selected.     | no                   | null          | Date             |
 | **`maxDate`**               | Maximum date that can be selected.     | no                   | null          | Date             |
-| **`startDate`**             | Selected start date                    | no                   | null          | Date             |
-| **`endDate`**               | Selected end date                      | requires _startDate_ | null          | Date             |
+| **`range`**             | Selected range date                    | yes                   | null          | Date             |
 | **`theme`**                 | Calendar StyleSheet                    | no                   | null          | ThemeType        |
 | **`locale`**                | Calendar language                      | es, en, fr, br       | 'en'          | LocaleType       |
 | **`dayNames`**              | Array of day names                     | no                   | []            | string[]         |

@@ -45,8 +45,7 @@ const Calendario = forwardRef((props: CalendarProps, ref: Ref<FlatList>) => {
     monthNames,
     onPress,
     dayNames,
-    startDate,
-    endDate,
+    range,
   } = props;
 
   const [
@@ -67,8 +66,7 @@ const Calendario = forwardRef((props: CalendarProps, ref: Ref<FlatList>) => {
   });
 
   const { start: localStartDate, end: localEndDate } = useRange({
-    startDate,
-    endDate,
+    range,
     firstMonthToRender,
     numberOfMonths,
   });

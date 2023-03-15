@@ -8,7 +8,7 @@ describe('useRange', () => {
     const numberOfMonths = 10;
     const firstMonthToRender = new Date();
     const { result } = renderHook(() =>
-      useRange({ firstMonthToRender, numberOfMonths })
+      useRange({ firstMonthToRender, numberOfMonths, range: [] })
     );
 
     expect(result.current.start).toBeUndefined();
@@ -21,7 +21,11 @@ describe('useRange', () => {
     const startDate = moment().add(1, 'day').toDate();
     const endDate = moment().add(10, 'day').toDate();
     const { result } = renderHook(() =>
-      useRange({ firstMonthToRender, numberOfMonths, startDate, endDate })
+      useRange({
+        firstMonthToRender,
+        numberOfMonths,
+        range: [startDate, endDate],
+      })
     );
 
     expect(result.current.start).toBeDefined();
@@ -35,7 +39,11 @@ describe('useRange', () => {
     const endDate = moment().add(4, 'month').toDate();
 
     const { result } = renderHook(() =>
-      useRange({ firstMonthToRender, numberOfMonths, startDate, endDate })
+      useRange({
+        firstMonthToRender,
+        numberOfMonths,
+        range: [startDate, endDate],
+      })
     );
 
     expect(result.current.start).toBeUndefined();

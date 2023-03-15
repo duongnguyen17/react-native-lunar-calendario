@@ -21,6 +21,23 @@ export function isSameDate(one: Date, other: Date) {
   );
 }
 
+/**
+ * return true if d1 sooner than d2 (day)
+ */
+export function isSoonerDay(d1: Date, d2: Date) {
+  if (d1.getFullYear() > d2.getFullYear()) {
+    return false;
+  }
+  if (d1.getMonth() > d2.getMonth()) {
+    return false;
+  }
+  if (d1.getDate() > d2.getDate()) {
+    return false;
+  }
+
+  return true;
+}
+
 export function getMonthIndex(
   firstMonth: Date,
   date: Date,
